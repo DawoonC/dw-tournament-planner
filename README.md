@@ -2,10 +2,11 @@
 
 This is a Python module which uses the PostgreSQL database to keep track of players and matches in a game tournament.
 <br>
+
 The game tournament will use the Swiss system for pairing up players in each round: players are not eliminated, and each player should be paired with another player with the same number of wins, or as close as possible.
 <br>
-This project, the second in [Udacity’s Full Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004), focuses on defining the database schema (SQL table definitions), and writing the code that will use it.
 
+This project, the second in [Udacity’s Full Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004), focuses on defining the database schema (SQL table definitions), and writing the code that will use it.
 <br>
 ## How to Run
 
