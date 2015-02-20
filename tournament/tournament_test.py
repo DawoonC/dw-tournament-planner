@@ -101,6 +101,26 @@ def testReportMatches():
     print "7. After a match, players have updated standings."
 
 
+def testDrawMatches():
+    deleteMatches()
+    deletePlayers()
+    registerPlayer("Bruno Walton")
+    registerPlayer("Boots O'Neal")
+    registerPlayer("Cathy Burton")
+    registerPlayer("Diane Grant")
+    standings = playerStandings()
+    [id1, id2, id3, id4] = [row[0] for row in standings]
+    reportMatch(id1, id2, True)
+    reportMatch(id3, id4, True)
+    standings = playerStandings()
+    for (i, n, w, m) in standings:
+        if m != 1:
+            raise ValueError("Each player should have one match recorded.")
+        if i in (id1, id2, id3, id4) and w-0.5 > 0.0000001:
+            raise ValueError("Each match player should have draw match recorded.")
+    print "8. After a match, players have updated standings with draw matches."
+
+
 def testPairings():
     deleteMatches()
     deletePlayers()
@@ -122,7 +142,7 @@ def testPairings():
     if correct_pairs != actual_pairs:
         raise ValueError(
             "After one match, players with one win should be paired.")
-    print "8. After one match, players with one win are paired."
+    print "9. After one match, players with one win are paired."
 
 
 if __name__ == '__main__':
@@ -133,7 +153,6 @@ if __name__ == '__main__':
     testRegisterCountDelete()
     testStandingsBeforeMatches()
     testReportMatches()
+    testDrawMatches()
     testPairings()
     print "Success!  All tests pass!"
-
-

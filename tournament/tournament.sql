@@ -9,10 +9,10 @@ CREATE TABLE players ( name TEXT,
 
 -- matches table
 -- Contains match result data for the tournament.
--- col1: result {integer} result of a match.
+-- col1: result {real} result of a match.
 --       Winner is represented by 1, and loser is 0.
 -- col2: id {integer} id of a player.
-CREATE TABLE matches ( result INTEGER,
+CREATE TABLE matches ( result REAL,
                        id INTEGER REFERENCES players );
 
 -- standings view

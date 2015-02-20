@@ -91,15 +91,24 @@ def playerStandings(cur=None):
     return cur.fetchall()
 
 @transaction_query
-def reportMatch(winner, loser, cur=None):
+def reportMatch(winner, loser, draw=False, cur=None):
     """Records the outcome of a single match between two players.
+
+       Winner gets 1 point
+       Loser gets 0 point
+       If the match is draw, then both player gets 0.5 point
 
     Args:
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
+      draw:  boolean value which represents a draw match. Default is false
     """
-    winner_sql = "INSERT INTO matches VALUES (1, %s);"
-    loser_sql = "INSERT INTO matches VALUES (0, %s);"
+    if not draw:
+        winner_sql = "INSERT INTO matches VALUES (1, %s);"
+        loser_sql = "INSERT INTO matches VALUES (0, %s);"
+    else:
+        winner_sql = "INSERT INTO matches VALUES (0.5, %s);"
+        loser_sql = "INSERT INTO matches VALUES (0.5, %s);"
     cur.execute(winner_sql, (winner,))
     cur.execute(loser_sql, (loser,))
  
